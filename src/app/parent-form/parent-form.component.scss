@@ -1,0 +1,33 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .example-form {
+    min-width: 150px;
+    max-width: 300px;
+    width: 100%;
+    margin: auto;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .mat-mdc-text-field-wrapper{
+    margin: 3%;
+  }
+  .ng-star-inserted{
+    margin: 1.5%;
+    color: red;
+  }
+  .mat-mdc-form-field-subscript-wrapper{
+   margin: -5%;
+  }
+  .mat-mdc-raised-button.mat-mdc-button-base{
+    margin: 4%;
+  }
+  div{
+    color: white;
+    display: flex;
+    flex-direction: row;
+  }

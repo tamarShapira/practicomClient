@@ -1,0 +1,60 @@
+
+<form class="example-form" (ngSubmit)="save(addParentForm);addParentForm.reset()" #addParentForm="ngForm" >
+<mat-form-field appearance="fill" class="field">
+    <mat-label>first name</mat-label>
+    <input matInput required name="fname" [(ngModel)]="parentService.parent.parentFirstName" pattern="[a-zA-Zא-ת]*" #fname='ngModel' >
+  </mat-form-field>
+  <div *ngIf="fname.touched&&fname.invalid">first name must be letters only.</div>
+  <mat-form-field appearance="fill" class="field">
+    <mat-label>last name</mat-label>
+    <input matInput required name="lname"  [(ngModel)]="parentService.parent.parentLastName" pattern="[a-zA-Zא-ת]*" #lname='ngModel'>
+  </mat-form-field>
+  <div *ngIf="lname.touched&&!lname.valid">last name must be letters only.</div>
+  <mat-form-field appearance="fill" matInput class="field">
+    <mat-label>TZ</mat-label>
+    <input matInput required  minlength="9" maxlength="9" name="ID"  [(ngModel)]="parentService.parent.parentId" pattern="[0-9]*" #identity='ngModel'>
+  </mat-form-field>
+  <div *ngIf="identity.touched&&!identity.valid">ID must be digits only.</div>
+  <mat-form-field class="field">
+    <mat-label>date of birth</mat-label>
+    <input type="date" matInput required name="DOB"  [(ngModel)]="parentService.parent.parentDOB">
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="field">
+    <mat-label>HMO</mat-label>
+    <mat-select required name="hmo"  [(ngModel)]="parentService.parent.parentHMO">
+      <mat-option value="Leumit">Leumit</mat-option>
+      <mat-option value="Macabi">Macabi</mat-option>
+      <mat-option value="Clalit">Clalit</mat-option>
+      <mat-option value="Meuhedet">Meuhedet</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="field">
+    <mat-label >species</mat-label>
+    <mat-select required name="spcs" [(ngModel)]="parentService.parent.parentSpecies">
+      <mat-option value="male" >male</mat-option>
+      <mat-option value="female">female</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="field"  *ngIf="!isAddingChild" (click)="funcAdd()">add child</button>
+
+</form>
+<form  *ngIf="isAddingChild==true" (ngSubmit)="saveChild(childForm)" #childForm="ngForm" >
+  <mat-form-field appearance="fill" class="field">
+      <mat-label>full name</mat-label>
+      <input matInput required name="cname" [(ngModel)]="parentService.child.childName" pattern="[a-zA-Zא-ת]*" #chName='ngModel' >
+    </mat-form-field>
+    <div *ngIf="chName.touched&&chName.invalid">name must be letters only.</div>
+    <!-- <div *ngIf="cname.touched&&fname.invalid">name must be letters only.</div> -->
+    <mat-form-field appearance="fill" matInput class="field">
+      <mat-label>TZ</mat-label>
+      <input matInput required [(ngModel)]="parentService.child.childId" minlength="9" maxlength="9" name="ID" pattern="[0-9]*"  #chId='ngModel' >
+    </mat-form-field>
+    <div *ngIf="chId.touched&&chId.invalid">identity must be digits only.</div>
+    <mat-form-field class="field">
+      <mat-label>date of birth</mat-label>
+      <input type="date" matInput required [(ngModel)]="parentService.child.childDOB" name="DOB" #chDOB="ngModel">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" class="field" [disabled]="!addParentForm.valid" (click)="save(addParentForm)">save parent</button>
+    <button mat-raised-button color="primary" class="field" type="submit" id="saveChildButton" [disabled]="!childForm.valid" (click)="saveChild(childForm)">save children</button>  
+</form>
+
